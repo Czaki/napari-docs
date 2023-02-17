@@ -14,6 +14,8 @@ jobs:
     name: Run CircleCI artifacts redirector
     # if: github.repository == 'napari/docs'
     steps:
+      - name: "context"
+        run: echo ${{ github.event.context }}
       - name: GitHub Action step
         uses: larsoner/circleci-artifacts-redirector-action@master
         with:
