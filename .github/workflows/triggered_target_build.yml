@@ -23,6 +23,16 @@ permissions:
   statuses: write
 
 jobs:
+  debug-event:
+    runs-on: ubuntu-slim
+    steps:
+      - run: |
+          echo "event_name=${{ github.event_name }}"
+          echo "comment_body=${{ github.event.comment.body }}"
+          echo "has_pull_request=${{ github.event.issue.pull_request != null }}"
+          echo "pull_request=${{ github.event.issue.pull_request }}"
+          cat "$GITHUB_EVENT_PATH"
+
   determine-make-target:
     runs-on: ubuntu-latest
     outputs:
